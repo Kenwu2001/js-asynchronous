@@ -2,7 +2,7 @@ function get_info() {
     return new Promise((resolve, reject) => {
         let success_rate = Math.random();
         let timer = Math.floor(Math.random() * 1000 + 500);
-        if (success_rate > 0.5) {
+        if (success_rate > 0.1) {
             let tmp_id = Math.floor(Math.random() * 14000 + 6000);
             setTimeout(() => {
                 resolve(tmp_id);
@@ -80,14 +80,31 @@ function retrieve_data() {
     txtUserName.value = '-';
     txtEmail.value = '-';
     txtAddress.value = '-';
+
+    // the Info object we want to change
+    var cur_info = document.getElementById('user-info-name');
+
     try {
-        // TODO : get_info first
-        // TODO : call other function to get other data
+        // TODO: get_info first
+        get_info()
+            .then(info => {
+                console.log('Info retrieved:', info);
+                // 在這裡處理成功獲取資訊的情況
+                cur_info.innerText = info + '\'s information';
+            })
+            .catch(error => {
+                console.error('Error retrieving info:', error);
+                // 在這裡處理獲取資訊失敗的情況
+                cur_info.innerText = 'failed';
+            });
+
+        // TODO: call other function to get other data
     } catch (e) {
-        
+
     }
+
 }
 
-window.onload = function() {
+window.onload = function () {
     initApp();
 }
