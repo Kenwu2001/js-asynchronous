@@ -142,19 +142,21 @@ async function retrieve_data() {
                     txtEmail.value = values[3];
                     txtAddress.value = values[4];
                 }
-                , err => {
-                    console.log('why: ' + err);
-                    txtInfoName.innerText = "failed ooo";
-                    if(boxReSample.checked == true) {
-                        console.log('cc');
-                        retrieve_data();
-                    }
+            )
+            .catch (
+                err => {
+                console.log('why: ' + err);
+                txtInfoName.innerText = "failed ooo";
+                if (boxReSample.checked == true) {
+                    console.log('cc');
+                    retrieve_data();
                 }
-            );
+            }
+        );
 
     } catch (e) {
         txtInfoName.innerText = 'failed';
-        if(boxReSample.checked == true) {
+        if (boxReSample.checked == true) {
             console.log('bb');
             retrieve_data();
         }
